@@ -19,5 +19,6 @@ public class task4 {
                             " а произведение: " + multiplOfCommandLine);
 
     }
+
 }
 

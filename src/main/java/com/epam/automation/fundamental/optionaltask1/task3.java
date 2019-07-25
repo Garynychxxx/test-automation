@@ -54,6 +54,8 @@ public class task3 {
 
         }
 
+        sc.close();
+
     }
 
 }

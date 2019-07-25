@@ -3,43 +3,34 @@ package com.epam.automation.fundamental.optionaltask2;
 /*Найти число, состоящее только из различных цифр. Если таких чисел несколько, найти первое из них.*/
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
 
 public class task7 {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-        int count;
-
-        do {
-            System.out.println("Введите необходимое количество чисел");
-            while (!sc.hasNextInt()) {
-                System.out.println("Нужно ввести положительное целое число");
-                sc.next();
-            }
-            count = sc.nextInt();
-        } while (count <= 0);
-
-
-        int number;
-        ArrayList<Integer> arrayList = new ArrayList<>();
-
-        do {
-            System.out.println("Введите число");
-            while (!sc.hasNextInt()) {
-                System.out.println("Нужно ввести целое число");
-                sc.next();
-            }
-            arrayList.add(sc.nextInt());
-            count--;
-        } while (count != 0);
+        ArrayList<Integer> arrayList = new ArrayList<>(SupportClass.inputNumbers());
 
         for (Integer integer : arrayList) {
-            int[] valueCharArray ;
+            int integerLength = integer.toString().length();
+            if (integerLength > 1) {
+                Set<Integer> set = new HashSet<>();
+
+
+                for (int i = 1; i < integerLength + 1; i++) {
+                    int digit = (int) ((integer % Math.pow(10, i)) / Math.pow(10, i - 1));
+                    set.add(digit);
+                }
+                if (set.size() == integerLength) {
+                    System.out.println(integer);
+                    break;
                 }
 
+            }
+
         }
+
     }
 
 }
