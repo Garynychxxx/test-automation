@@ -23,13 +23,13 @@ public class task3 {
 
         boolean repit = true;
         boolean isln = false;
-        String choise;
+        String choice;
 
         while (repit) {
             System.out.println();
-            choise = sc.nextLine().toLowerCase();
+            choice = sc.nextLine().toLowerCase();
 
-            switch (choise) {
+            switch (choice) {
                 case "да":
                     isln = true;
                     repit = false;
