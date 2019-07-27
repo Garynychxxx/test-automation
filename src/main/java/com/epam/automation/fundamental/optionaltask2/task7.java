@@ -1,10 +1,10 @@
 package com.epam.automation.fundamental.optionaltask2;
 
-/*Найти число, состоящее только из различных цифр. Если таких чисел несколько, найти первое из них.*/
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+/*Найти число, состоящее только из различных цифр. Если таких чисел несколько, найти первое из них.*/
 
 public class task7 {
 
