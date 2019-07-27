@@ -14,10 +14,9 @@ public class task7 {
 
         for (Integer integer : arrayList) {
             int integerLength = integer.toString().length();
+
             if (integerLength > 1) {
                 Set<Integer> set = new HashSet<>();
-
-
                 for (int i = 1; i < integerLength + 1; i++) {
                     int digit = (int) ((integer % Math.pow(10, i)) / Math.pow(10, i - 1));
                     set.add(digit);
