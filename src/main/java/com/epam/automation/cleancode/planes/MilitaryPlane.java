@@ -1,4 +1,4 @@
-package com.epam.automation.cleancode.Planes;
+package com.epam.automation.cleancode.planes;
 
 import com.epam.automation.cleancode.models.MilitaryType;
 

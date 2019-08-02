@@ -1,15 +1,15 @@
-package com.epam.automation.cleancode.Planes;
+package com.epam.automation.cleancode.planes;
 
 import com.epam.automation.cleancode.models.ClassificationLevel;
 import com.epam.automation.cleancode.models.ExperimentalTypes;
 
 
-public class experimentalPlane extends Plane {
+public class ExperimentalPlane extends Plane {
 
     private ExperimentalTypes type;
     private ClassificationLevel classificationLevel;
 
-    public experimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, ExperimentalTypes type, ClassificationLevel classificationLevel) {
+    public ExperimentalPlane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity, ExperimentalTypes type, ClassificationLevel classificationLevel) {
         super(model, maxSpeed, maxFlightDistance, maxLoadCapacity);
         this.type = type;
         this.classificationLevel = classificationLevel;

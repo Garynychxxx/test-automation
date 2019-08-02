@@ -1,8 +1,8 @@
 package com.epam.automation.cleancode;
 
-import com.epam.automation.cleancode.Planes.MilitaryPlane;
-import com.epam.automation.cleancode.Planes.PassengerPlane;
-import com.epam.automation.cleancode.Planes.Plane;
+import com.epam.automation.cleancode.planes.MilitaryPlane;
+import com.epam.automation.cleancode.planes.PassengerPlane;
+import com.epam.automation.cleancode.planes.Plane;
 import com.epam.automation.cleancode.models.MilitaryType;
 
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class Runner {
     public static void main(String[] args) {
         Airport airport = new Airport(planes);
         Airport militaryAirport = new Airport(airport.getMilitaryPlanes());
-        Airport passengerAirport = new Airport(airport.getPasPl());
+        Airport passengerAirport = new Airport(airport.getPassengerPlanes());
         System.out.println("Military airport sorted by max distance: " + militaryAirport
                 .sortByMaxDistance()
                 .toString());

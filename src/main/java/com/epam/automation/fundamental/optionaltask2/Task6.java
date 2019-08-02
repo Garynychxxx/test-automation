@@ -2,9 +2,9 @@ package com.epam.automation.fundamental.optionaltask2;
 
 import java.util.ArrayList;
 
-/*Найти число, цифры в котором идут в строгом порядке возрастания. Если таких чисел несколько, найти первое из них.*/
+//Найти число, цифры в котором идут в строгом порядке возрастания. Если таких чисел несколько, найти первое из них.
 
-public class task6 {
+public class Task6 {
 
     public static void main(String[] args) {
 

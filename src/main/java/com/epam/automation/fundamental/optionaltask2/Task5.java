@@ -2,9 +2,9 @@ package com.epam.automation.fundamental.optionaltask2;
 
 import java.util.ArrayList;
 
-/*Найти количество чисел, содержащих только четные цифры, а среди оставшихся — количество чисел с равным числом четных и нечетных цифр.*/
+//Найти количество чисел, содержащих только четные цифры, а среди оставшихся — количество чисел с равным числом четных и нечетных цифр.
 
-public class task5 {
+public class Task5 {
 
     public static void main(String[] args) {
 

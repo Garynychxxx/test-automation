@@ -2,7 +2,7 @@ package com.epam.automation.fundamental.optionaltask1;
 
 import java.util.Scanner;
 
-/*Вывести заданное количество случайных чисел с переходом и без перехода на новую строку*/
+//Вывести заданное количество случайных чисел с переходом и без перехода на новую строку
 
 public class task3 {
 
