@@ -25,11 +25,7 @@ public class Task7 {
                     System.out.println(integer);
                     break;
                 }
-
             }
-
         }
-
     }
-
 }

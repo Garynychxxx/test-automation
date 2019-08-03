@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 //Вывести заданное количество случайных чисел с переходом и без перехода на новую строку
 
-public class task3 {
+public class Task3 {
 
     public static void main(String[] args) {
 

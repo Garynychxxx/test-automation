@@ -119,5 +119,4 @@ public class Task4 {
         task4.printMatrix(task4.changedMatrix);
 
     }
-
 }

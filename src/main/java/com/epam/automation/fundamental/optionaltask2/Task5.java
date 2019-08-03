@@ -33,12 +33,9 @@ public class Task5 {
                     }
                 }
             }
-
         }
         System.out.println("Количество чисел содержащих только чётные цифры: " + countOfEvenInList);
         System.out.println("Количество чисел с равным количеством чётных и нечётных цифр: " + countOfEvenEqualsUneven);
-
     }
-
 }
 

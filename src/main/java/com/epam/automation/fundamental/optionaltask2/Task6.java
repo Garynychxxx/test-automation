@@ -27,15 +27,10 @@ public class Task6 {
                         System.out.println(integer);
                         stop=true;
                     }
-
                 }
-
             }
-
         }
-
     }
-
 }
 
 

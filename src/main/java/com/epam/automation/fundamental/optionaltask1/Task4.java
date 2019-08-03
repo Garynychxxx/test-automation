@@ -3,7 +3,7 @@ package com.epam.automation.fundamental.optionaltask1;
 //Ввести целые числа как аргументы командной строки,
 // подсчитать их сумму (произведение) и вывести результат на консоль.
 
-public class task4 {
+public class Task4 {
 
     public static void main(String[] args) {
 

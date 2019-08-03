@@ -3,10 +3,8 @@ package com.epam.automation.fundamental.optionaltask2;
 import java.util.ArrayList;
 import java.util.Scanner;
 
- class SupportClass {
-     static ArrayList<Integer> inputNumbers()
-
-    {
+class SupportClass {
+    static ArrayList<Integer> inputNumbers() {
         ArrayList<Integer> arrayList = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
