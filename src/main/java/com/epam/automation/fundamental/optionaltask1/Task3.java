@@ -22,7 +22,7 @@ public class Task3 {
 
 
         boolean repit = true;
-        boolean isln = false;
+        boolean isLN = false;
         String choice;
 
         while (repit) {
@@ -31,12 +31,12 @@ public class Task3 {
 
             switch (choice) {
                 case "да":
-                    isln = true;
+                    isLN = true;
                     repit = false;
                     break;
 
                 case "нет":
-                    isln = false;
+                    isLN = false;
                     repit = false;
                     break;
 
@@ -48,7 +48,7 @@ public class Task3 {
         }
         for (int i = 0; i < count; i++) {
             System.out.print((int) (Math.random() * 1000) + " ");
-            if (isln) {
+            if (isLN) {
                 System.out.println();
             }
 

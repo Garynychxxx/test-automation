@@ -1,4 +1,4 @@
-package com.epam.automation.classes.optionaltask;
+package com.epam.automation.classes.maintask;
 
 //House: id, Номер квартиры, Площадь, Этаж, Количество комнат, Улица, Тип здания,
 //            Срок эксплуатации.

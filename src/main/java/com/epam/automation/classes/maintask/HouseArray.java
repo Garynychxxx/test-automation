@@ -1,4 +1,4 @@
-package com.epam.automation.classes.optionaltask;
+package com.epam.automation.classes.maintask;
 
 import java.util.List;
 
