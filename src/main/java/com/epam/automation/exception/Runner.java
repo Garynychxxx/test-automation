@@ -21,7 +21,7 @@ public class Runner {
         Student studentErohovec = new Student("Ероховец Антон", 371,
                 new Subject("Физика", 5, 5, 5, 5, 5),
                 new Subject("Информатика", 10, 9, 8, 7, 6));
-        university.getListOfFaculty().get(0).getListOfGroup().get(0).addStudent(studentElovik,studentErohovec,studentMozaikin);
+        university.getFaculties().get(0).getGroups().get(0).addStudent(studentElovik,studentErohovec,studentMozaikin);
 
 
 
@@ -33,7 +33,7 @@ public class Runner {
                 new Subject("Математика", 2, 3, 4, 5, 10),
                 new Subject("Физика", 3, 4, 6, 6, 3),
                 new Subject("Физкультура", 2, 6, 5, 3, 2));
-        university.getListOfFaculty().get(0).getListOfGroup().get(1).addStudent(studentMazurka,studentPaseka);
+        university.getFaculties().get(0).getGroups().get(1).addStudent(studentMazurka,studentPaseka);
 
 
 
@@ -41,7 +41,7 @@ public class Runner {
                 new Subject("Черчение", 7, 7, 7, 7, 7),
                 new Subject("Физика", 1, 2, 7, 2, 7));
 
-        university.getListOfFaculty().get(0).getListOfGroup().get(2).addStudent(studentChertov);
+        university.getFaculties().get(0).getGroups().get(2).addStudent(studentChertov);
 
 
 
@@ -50,7 +50,7 @@ public class Runner {
         Student studentZaboiniy = new Student("Забойный Влад", 771,
                 new Subject("Математика", 7, 5, 6, 2, 8),
                 new Subject("Информатика", 10, 4, 8, 9, 5));
-        university.getListOfFaculty().get(1).getListOfGroup().get(0).addStudent(studentKrotov,studentZaboiniy);
+        university.getFaculties().get(1).getGroups().get(0).addStudent(studentKrotov,studentZaboiniy);
 
 
         Student studentCherecako = new Student("Черевако Виталий", 623,
@@ -61,15 +61,16 @@ public class Runner {
                 new Subject("Физика", 9, 9, 9, 9, 9),
                 new Subject("Информатика", 10, 9, 10, 7, 9));
 
-        university.getListOfFaculty().get(1).getListOfGroup().get(1).addStudent(studentCherecako,studentChalevinskiy);
+        university.getFaculties().get(1).getGroups().get(1).addStudent(studentCherecako,studentChalevinskiy);
 
 
 
 
-        System.out.printf("%.2f\n",university.getAverageMarkOfOneSubjectInAllUniversity("Математика"));
+        System.out.printf("%.2f\n",university.getAverageMarkOfOneSubject("Математика"));
 
-        System.out.printf("%.2f\n",university.getAverageMarkOfOneSubjectInOneGroupInOneFaculty("ATF", "11241", "Физика"));
+        System.out.printf("%.2f\n",university.getAverageMarkOfOneSubject("ATF", "11241", "Физика"));
 
         System.out.printf("%.2f\n",studentChalevinskiy.getAverageMarkOfOneSubject("Физика"));
     }
+
 }

@@ -2,26 +2,21 @@ package com.epam.automation.exception;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
-public class Student {
+class Student {
     String studentName;
-    int Id;
+    private int Id;
+    private List<Subject> individualJournal = new ArrayList<>();
 
-    public Student(String name, int id, Subject...subjects) {
+    Student(String name, int id, Subject... subjects) {
         this.studentName = name;
         Id = id;
         this.individualJournal.addAll(Arrays.asList(subjects));
     }
 
-    public ArrayList<Subject> getIndividualJournal() {
-        return individualJournal;
-    }
-
-    ArrayList<Subject> individualJournal = new ArrayList<>();
-
-
-    public Double getAverageMarkOfOneSubject(String subjectName) {
+    Double getAverageMarkOfOneSubject(String subjectName) {
         Double returnStatement = 0.0;
         for (Subject subject : individualJournal) {
             if (subject.getSubjectName().equals(subjectName) || subjectName.equals("All")) {

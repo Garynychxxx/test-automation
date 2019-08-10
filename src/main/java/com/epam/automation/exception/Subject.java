@@ -1,19 +1,19 @@
 package com.epam.automation.exception;
 
-public class Subject {
-    String subjectName;
-    int[] marksOfThisSubject;
+class Subject {
+    private String subjectName;
+    private int[] marksOfThisSubject;
 
-    public Subject(String subjectName, int... marksOfThisSubject) {
+    Subject(String subjectName, int... marksOfThisSubject) {
         this.subjectName = subjectName;
         this.marksOfThisSubject = marksOfThisSubject;
     }
 
-    public String getSubjectName() {
+    String getSubjectName() {
         return subjectName;
     }
 
-    public Double getAverageMark() {
+    Double getAverageMark() {
         int sumAllMarksOfOneSubject=0;
 
         for (int oneMark : marksOfThisSubject) {

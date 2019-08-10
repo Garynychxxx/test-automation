@@ -2,45 +2,46 @@ package com.epam.automation.exception;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class University {
+class University {
 
     private static University university;
 
     private University() {
     }
 
-    public static University getUniversity() {
+    static University getUniversity() {
         if (university == null) {
             university = new University();
         }
         return university;
     }
 
-    ArrayList<Faculty> listOfFaculty = new ArrayList<>();
+    private List<Faculty> faculties = new ArrayList<>();
 
-    public ArrayList<Faculty> getListOfFaculty() {
-        return listOfFaculty;
+    List<Faculty> getFaculties() {
+        return faculties;
     }
 
-    public void addFaculty(Faculty... faculty) {
-        this.listOfFaculty.addAll(Arrays.asList(faculty));
+    void addFaculty(Faculty... faculty) {
+        this.faculties.addAll(Arrays.asList(faculty));
 
     }
 
-    public Double getAverageMarkOfOneSubjectInOneGroupInOneFaculty(String facultyName, String groupName, String subjectName) {
+    Double getAverageMarkOfOneSubject(String facultyName, String groupName, String subjectName) {
         Double sumAverageMarksOfOneSubjectInOneGroupInOneFaculty = 0.0;
-        int howFacultiesHasGroupHasStudentHasSubject = 0;
-        for (int i = 0; i < listOfFaculty.size(); i++) {
-            if (listOfFaculty.get(i).getFacultyName().equals(facultyName) || facultyName.equals("All")) {
-                sumAverageMarksOfOneSubjectInOneGroupInOneFaculty += listOfFaculty.get(i).getAverageMarkOfOneSubjectInGroupInFaculty(groupName, subjectName);
-                howFacultiesHasGroupHasStudentHasSubject++;
+        int howMuchFacultiesHasGroupHasStudentHasSubject = 0;
+        for (Faculty faculty : faculties) {
+            if (faculty.getFacultyName().equals(facultyName) || facultyName.equals("All")) {
+                sumAverageMarksOfOneSubjectInOneGroupInOneFaculty += faculty.getAverageMarkOfOneSubjectInGroupInFaculty(groupName, subjectName);
+                howMuchFacultiesHasGroupHasStudentHasSubject++;
             }
         }
-        return sumAverageMarksOfOneSubjectInOneGroupInOneFaculty / howFacultiesHasGroupHasStudentHasSubject;
+        return sumAverageMarksOfOneSubjectInOneGroupInOneFaculty / howMuchFacultiesHasGroupHasStudentHasSubject;
     }
 
-    public Double getAverageMarkOfOneSubjectInAllUniversity(String subjectName) {
-        return getAverageMarkOfOneSubjectInOneGroupInOneFaculty("All", "All", subjectName);
+    Double getAverageMarkOfOneSubject(String subjectName) {
+        return getAverageMarkOfOneSubject("All", "All", subjectName);
     }
 }

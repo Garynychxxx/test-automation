@@ -2,29 +2,30 @@ package com.epam.automation.exception;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class Faculty {
-    String facultyName;
-    ArrayList<Group> listOfGroup = new ArrayList<>();
+class Faculty {
+    private String facultyName;
+    private List<Group> groups = new ArrayList<>();
 
-    public String getFacultyName() {
+    String getFacultyName() {
         return facultyName;
     }
 
-    public ArrayList<Group> getListOfGroup() {
-        return listOfGroup;
+    List<Group> getGroups() {
+        return groups;
     }
 
-    public Faculty(String facultyName, Group... groups) {
+    Faculty(String facultyName, Group... groups) {
         this.facultyName = facultyName;
-        this.listOfGroup.addAll(Arrays.asList(groups));
+        this.groups.addAll(Arrays.asList(groups));
 
     }
 
-    public Double getAverageMarkOfOneSubjectInGroupInFaculty(String groupName, String subjectName) {
+    Double getAverageMarkOfOneSubjectInGroupInFaculty(String groupName, String subjectName) {
         int howMuchStudentsHaveThisSubject = 0;
         Double sumOfMarksOFAllStudentsByOneSubjectByGroup = 0.0;
-        for (Group group : listOfGroup) {
+        for (Group group : groups) {
             if (group.getGroupName().equals(groupName) || groupName.equals("All")) {
                 howMuchStudentsHaveThisSubject++;
                 sumOfMarksOFAllStudentsByOneSubjectByGroup += group.getAverageMarkOfOneSubjectInGroup(subjectName);
@@ -32,5 +33,4 @@ public class Faculty {
         }
         return sumOfMarksOFAllStudentsByOneSubjectByGroup / howMuchStudentsHaveThisSubject;
     }
-
 }

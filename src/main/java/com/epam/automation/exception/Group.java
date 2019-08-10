@@ -2,28 +2,29 @@ package com.epam.automation.exception;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class Group {
-    String groupName;
-    ArrayList<Student> listOFStudents = new ArrayList<>();
+class Group {
+    private String groupName;
+    private List<Student> students = new ArrayList<>();
 
-    public Group(String groupName) {
+    Group(String groupName) {
         this.groupName = groupName;
     }
 
-    public String getGroupName() {
+    String getGroupName() {
         return groupName;
     }
 
-    public void addStudent(Student... students) {
-        listOFStudents.addAll(Arrays.asList(students));
+    void addStudent(Student... students) {
+        this.students.addAll(Arrays.asList(students));
     }
 
-    public Double getAverageMarkOfOneSubjectInGroup(String subjectName) {
+    Double getAverageMarkOfOneSubjectInGroup(String subjectName) {
         Double sumOfMarksOFAllStudentsByOneSubject = 0.0;
-        for (Student student : listOFStudents) {
+        for (Student student : students) {
             sumOfMarksOFAllStudentsByOneSubject += student.getAverageMarkOfOneSubject(subjectName);
         }
-        return sumOfMarksOFAllStudentsByOneSubject / listOFStudents.size();
+        return sumOfMarksOFAllStudentsByOneSubject / students.size();
     }
 }
