@@ -1,5 +1,9 @@
 package com.epam.automation.exception;
 
+import com.epam.automation.exception.exeptionsForTask.MarkOutOfBoundsException;
+import com.epam.automation.exception.exeptionsForTask.NoStudentException;
+import com.epam.automation.exception.exeptionsForTask.NoSubjectExceprion;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,11 +24,20 @@ class Group {
         this.students.addAll(Arrays.asList(students));
     }
 
-    Double getAverageMarkOfOneSubjectInGroup(String subjectName) {
+    Double getAverageMarkOfOneSubjectInGroup(SubjectType subjectType) throws MarkOutOfBoundsException, NoSubjectExceprion, NoStudentException {
         Double sumOfMarksOFAllStudentsByOneSubject = 0.0;
+        int howMuchMarks = 0;
+
         for (Student student : students) {
-            sumOfMarksOFAllStudentsByOneSubject += student.getAverageMarkOfOneSubject(subjectName);
+            if (students.isEmpty()) {
+                throw new NoStudentException("В группе должен быть хотя бы один студент");
+            }
+            if (student.getAverageMarkOfSubject(subjectType) != 0.0) {
+
+                howMuchMarks++;
+                sumOfMarksOFAllStudentsByOneSubject += student.getAverageMarkOfSubject(subjectType);
+            }
         }
-        return sumOfMarksOFAllStudentsByOneSubject / students.size();
+        return howMuchMarks == 0 ? 0 : sumOfMarksOFAllStudentsByOneSubject / howMuchMarks;
     }
 }

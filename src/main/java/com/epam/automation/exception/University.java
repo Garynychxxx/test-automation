@@ -1,5 +1,7 @@
 package com.epam.automation.exception;
 
+import com.epam.automation.exception.exeptionsForTask.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,19 +31,24 @@ class University {
 
     }
 
-    Double getAverageMarkOfOneSubject(String facultyName, String groupName, String subjectName) {
+    Double getAverageMarkOfOneSubject(String facultyName, String groupName, SubjectType subjectType) throws MarkOutOfBoundsException, NoSubjectExceprion, NoGroupException, NoStudentException, NoFacultyException {
         Double sumAverageMarksOfOneSubjectInOneGroupInOneFaculty = 0.0;
         int howMuchFacultiesHasGroupHasStudentHasSubject = 0;
+        if (faculties.isEmpty()) {
+            throw new NoFacultyException("В университете должен быть хотя бы один факультет");
+        }
         for (Faculty faculty : faculties) {
-            if (faculty.getFacultyName().equals(facultyName) || facultyName.equals("All")) {
-                sumAverageMarksOfOneSubjectInOneGroupInOneFaculty += faculty.getAverageMarkOfOneSubjectInGroupInFaculty(groupName, subjectName);
-                howMuchFacultiesHasGroupHasStudentHasSubject++;
+            if ((faculty.getFacultyName().equals(facultyName) || facultyName.equals("All"))) {
+                if (faculty.getAverageMarkOfOneSubjectInGroupInFaculty(groupName, subjectType) != 0) {
+                    sumAverageMarksOfOneSubjectInOneGroupInOneFaculty += faculty.getAverageMarkOfOneSubjectInGroupInFaculty(groupName, subjectType);
+                    howMuchFacultiesHasGroupHasStudentHasSubject++;
+                }
             }
         }
-        return sumAverageMarksOfOneSubjectInOneGroupInOneFaculty / howMuchFacultiesHasGroupHasStudentHasSubject;
+        return howMuchFacultiesHasGroupHasStudentHasSubject == 0 ? 0 : sumAverageMarksOfOneSubjectInOneGroupInOneFaculty / howMuchFacultiesHasGroupHasStudentHasSubject;
     }
 
-    Double getAverageMarkOfOneSubject(String subjectName) {
-        return getAverageMarkOfOneSubject("All", "All", subjectName);
+    Double getAverageMarkOfOneSubject(SubjectType subjectType) throws MarkOutOfBoundsException, NoSubjectExceprion, NoGroupException, NoStudentException, NoFacultyException {
+        return getAverageMarkOfOneSubject("All", "All", subjectType);
     }
 }
