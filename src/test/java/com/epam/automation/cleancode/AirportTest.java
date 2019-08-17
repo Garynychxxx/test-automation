@@ -1,4 +1,4 @@
-package com.epam.automation;
+package com.epam.automation.cleancode;
 
 import com.epam.automation.cleancode.Airport;
 import com.epam.automation.cleancode.models.ClassificationLevel;
