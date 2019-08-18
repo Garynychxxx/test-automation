@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PastebinHomePage {
+public class PastebinHomePageICanWin {
 
 
     protected WebDriver driver;
@@ -38,13 +38,13 @@ public class PastebinHomePage {
         buttonCreatNewPast.click();
     }
 
-    protected PastebinHomePage openPage() {
+    protected PastebinHomePageICanWin openPage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIME_SECONDS);
         return this;
     }
 
-    public PastebinHomePage(WebDriver driver) {
+    public PastebinHomePageICanWin(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
