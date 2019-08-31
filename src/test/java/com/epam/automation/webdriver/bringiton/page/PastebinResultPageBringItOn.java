@@ -31,7 +31,10 @@ public class PastebinResultPageBringItOn extends PastebinAbstractPageBringItOn {
 
     protected PastebinHomePageBringItOn openPage() throws Exception {
 
-        throw new RuntimeException("Think twice to do it");
+        throw new RuntimeException("Please 'think twice' whether you need to use these method, " +
+                "if direct access is still needed - please dig into Google Java Style Guide " +
+                "or avoid inheritance from AbstractPage " +
+                "or remove openPage() method from AbstractPage");
     }
 
     public PastebinResultPageBringItOn(WebDriver driver) {
