@@ -26,13 +26,13 @@ public class CloudGoogleCalculatorPage extends AbstractPage {
     WebElement checkBoxAddGPUs;
     @FindBy(id = "select_value_label_49")
     WebElement selectorLocalSDD;
-    @FindBy(id = "select_value_label_339")
+    @FindBy(xpath = "//*[@id='select_value_label_339' and not(@disabled)]")
     WebElement selectorNumberOfGPUs;
     @FindBy(id = "select_value_label_340")
     WebElement selectorGPUType;
-    @FindBy(id = "select_value_label_50")
+    @FindBy(xpath = "//*[@id = 'select_value_label_50' and not(@disabled)]")
     WebElement selectorDatacenterLocation;
-    @FindBy(id = "select_value_label_51")
+    @FindBy(xpath = "//*[@id ='select_value_label_51' and not(@disabled)]")
     WebElement selectorCommitedUsage;
 
     @FindBy(xpath = "//form[@name='ComputeEngineForm']//*[contains(text(),'Add to Estimate')]")
@@ -89,36 +89,39 @@ public class CloudGoogleCalculatorPage extends AbstractPage {
         fillInCheckBox(selectorLocalSDD, value);
         return this;
     }
+
     public CloudGoogleCalculatorPage addToEstimate() {
         new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(buttonAddToEstimate)).click();
         return this;
     }
+
     public CloudGoogleCalculatorPage choseNumberOfGPUs(String value) {
-        fillInCheckBox(selectorNumberOfGPUs,value);
+        fillInCheckBox(selectorNumberOfGPUs, value);
         return this;
     }
+
     public CloudGoogleCalculatorPage choseGPUType(String value) {
-        fillInCheckBox(selectorGPUType,value);
+        fillInCheckBox(selectorGPUType, value);
         return this;
     }
+
     public CloudGoogleCalculatorPage choseDataCenterLocation(String value) {
-        fillInCheckBox(selectorDatacenterLocation,value);
+        fillInCheckBox(selectorDatacenterLocation, value);
         return this;
     }
+
     public CloudGoogleCalculatorPage choseCommittedUsage(String value) {
-        fillInCheckBox(selectorCommitedUsage,value);
+        fillInCheckBox(selectorCommitedUsage, value);
         return this;
     }
 
 
     public CloudGoogleCalculatorPage fillInCheckBox(WebElement webElement, String value) {
-        //elementtobeClicable
-        new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.visibilityOf(webElement)).click();
+        new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(webElement)).click();
         String xpathValue = String.format(PATTERN_XPATH_CHOICE_DROP_DOWN_MENU, value);
         new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(By.xpath(xpathValue))).click();
         return this;
     }
-
 
 
 }

@@ -1,10 +1,11 @@
 package com.epam.automation.webdriver.hardcore.test;
 
-import com.epam.automation.webdriver.hardcore.page.CloudGoogleCalculatorPage;
 import com.epam.automation.webdriver.hardcore.page.CloudGoogleCalculatorResultPage;
+import com.epam.automation.webdriver.hardcore.page.CloudGoogleHomePage;
 import com.epam.automation.webdriver.hardcore.page.TenMinuteMailHomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -20,12 +21,7 @@ public class CloudGoogleTest {
 
     @Test(groups = " preparation ", alwaysRun = true)
     public void fillInForm() {
-//        new CloudGoogleHomePage(driver).openPage();
-//        new CloudGoogleProductsPage(driver).openPage();
-//        new CloudGooglePricingPage(driver).openPage();
-//        new CloudGoogleCalculatorPage(driver).openPage();
-        driver.get("https://cloud.google.com/products/calculator/");   /*для быстрой проверки(удалить)*/
-        new CloudGoogleCalculatorPage(driver)
+        new CloudGoogleHomePage(driver).openPage().SearchForTerms("Google Cloud Platform Pricing Calculator").goToleCalculatorPage()
                 .enterIframe()
                 .choseNumberOfInstance("4")
                 .choseOperatingSystem("Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS")
@@ -39,19 +35,18 @@ public class CloudGoogleTest {
                 .choseCommittedUsage("1 Year")
                 .addToEstimate();
 
-//
+
     }
 
-//    @Test(groups = "Hurt Me Plenty", dependsOnMethods = "fillInForm")
-//    public void FieldsAreCorrect() {
-//        Assert.assertTrue((new CloudGoogleResultPage(driver).checkResult("VM class").contains("regular") &&
-//                new CloudGoogleResultPage(driver).checkResult("Region:").contains("Frankfurt") &&
-//                new CloudGoogleResultPage(driver).checkResult("Instance type").contains(" n1-standard-8") &&
-//                new CloudGoogleResultPage(driver).checkResult("Total available local SSD space").contains("2x375 GB") &&
-//                new CloudGoogleResultPage(driver).checkResult("Commitment term").contains("1 Year") &&
-//                new CloudGoogleResultPage(driver).checkResult("Total Estimated Cost").contains("1,187.77")));
-//    }
-
+    @Test(groups = "Hurt Me Plenty", dependsOnMethods = "fillInForm")
+    public void FieldsAreCorrect() {
+        Assert.assertTrue((new CloudGoogleCalculatorResultPage(driver).checkResult("VM class").contains("regular") &&
+                new CloudGoogleCalculatorResultPage(driver).checkResult("Region:").contains("Frankfurt") &&
+                new CloudGoogleCalculatorResultPage(driver).checkResult("Instance type").contains(" n1-standard-8") &&
+                new CloudGoogleCalculatorResultPage(driver).checkResult("Total available local SSD space").contains("2x375 GB") &&
+                new CloudGoogleCalculatorResultPage(driver).checkResult("Commitment term").contains("1 Year") &&
+                new CloudGoogleCalculatorResultPage(driver).checkResult("Total Estimated Cost").contains("1,187.77")));
+    }
 
     @Test(groups = "Hardcore", dependsOnMethods = "fillInForm")
     public void checkEmail() {
@@ -64,10 +59,8 @@ public class CloudGoogleTest {
         cloudGoogleResultPage.switchTabByWindowHandle(cloudGoogleResultPageWindowHandle);
         cloudGoogleResultPage.sendEmail(actualEmail);
         tenMinuteMailHomePage.switchTabByWindowHandle(tenMinuteMailHomePageWindowHandle);
-
-
-
-
+        String totalEstimateFromEmail = tenMinuteMailHomePage.getTotalEstimate();
+        Assert.assertTrue(totalEstimateFromEmail.contains(totalEstimateCost));
     }
 }
 

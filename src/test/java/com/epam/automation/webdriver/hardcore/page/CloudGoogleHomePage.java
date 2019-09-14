@@ -1,5 +1,6 @@
 package com.epam.automation.webdriver.hardcore.page;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +12,8 @@ public class CloudGoogleHomePage extends AbstractPage {
     public static final String SE = "https://cloud.google.com";
 
     @FindBy(xpath = "//input[@class='devsite-search-field devsite-search-query']")
-    WebElement searchButton;
+    WebElement searchInput;
+
 
     @Override
     public CloudGoogleHomePage openPage() {
@@ -24,18 +26,10 @@ public class CloudGoogleHomePage extends AbstractPage {
         super(driver);
     }
 
-    @FindBy(xpath = "//a[@class = 'cloud-button cloud-button--flat']")
-    WebElement linkSeeAllProducts;
-    @FindBy(xpath = "//a[2][@class = 'cloud-button cloud-button--secondary']")
-    WebElement linkSeePricing;
-    @FindBy(xpath = "//a[text()= 'Calculators']")
-    WebElement linkCalculators;
-
-    public CloudGoogleSearchResultPage gotoSearchResultPage(String serchTerm) {
-        linkSeeAllProducts.click();
-        new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(linkSeeAllProducts)).click();
-        return new CloudGoogleSearchResultPage(driver, serchTerm);
+    public CloudGoogleSearchResultPage SearchForTerms(String searchTerm) {
+        searchInput.click();
+        new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(searchInput)).sendKeys(searchTerm);
+        searchInput.sendKeys(Keys.ENTER);
+        return new CloudGoogleSearchResultPage(driver, searchTerm);
     }
-
-
 }

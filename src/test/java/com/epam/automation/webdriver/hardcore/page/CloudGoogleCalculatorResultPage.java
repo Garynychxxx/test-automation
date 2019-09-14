@@ -11,13 +11,11 @@ public class CloudGoogleCalculatorResultPage extends AbstractPage {
 
 
     private static final String PATTERN_XPATH_RESULT = "//*[contains(text(),'%s')]";
-    @FindBy(xpath = "//md-dialog//[@class='ng-pristine ng-invalid ng-invalid-required ng-valid-email']")
-    WebElement idIframe;
     @FindBy(id = "email_quote")
     WebElement emailEstimateButton;
     @FindBy(xpath = "//label[contains(text(),'Email')]/following-sibling::input")
     WebElement pastEmailField;
-    @FindBy(id = "//button[contains(text(),'Send Email')]")
+    @FindBy(xpath = "//button[contains(text(),'Send Email') and not(@disabled)]")
     WebElement sendEmailButton;
     @FindBy(id = "idIframe")
     WebElement iFrame;
@@ -26,11 +24,10 @@ public class CloudGoogleCalculatorResultPage extends AbstractPage {
         String xpathResultValue = String.format(PATTERN_XPATH_RESULT, value);
         return new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathResultValue))).getText();
 
-
     }
 
     public String getTotalEstimateCost() {
-        return checkResult("Total Estimated Cost").replaceAll("Total Estimated Cost:", "").replaceAll(" per 1 month ", "");
+        return checkResult("Total Estimated Cost").replaceAll("Total Estimated Cost:", "").replaceAll(" per 1 month", "");
     }
 
     @Override
@@ -41,7 +38,6 @@ public class CloudGoogleCalculatorResultPage extends AbstractPage {
                 "or remove openPage() method from AbstractPage");
     }
 
-
     public CloudGoogleCalculatorResultPage(WebDriver driver) {
         super(driver);
     }
@@ -50,26 +46,13 @@ public class CloudGoogleCalculatorResultPage extends AbstractPage {
 
         new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(iFrame));
         driver.switchTo().frame(iFrame);
-
-
         new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(emailEstimateButton))
                 .click();
-
-//                new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(pastEmailField))
-//                .click();
-
         new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(pastEmailField))
                 .sendKeys(email);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
         new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(sendEmailButton))
                 .click();
-
+        new WebDriverWait(driver, WAIT_TIME_SECONDS).until(ExpectedConditions.elementToBeClickable(emailEstimateButton));
 
         return this;
     }
