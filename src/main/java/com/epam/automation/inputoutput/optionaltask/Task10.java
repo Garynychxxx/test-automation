@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+//[^ |].+(\.[A_Za-z0-9_!~=+-]+)$   (для файла)
+//[^ |].*\.(?![A_Za-z0-9_!~=+-]+)$ (для папки)
+
+
 // Прочитать строки из файла и поменять местами первое и последнее слова в каждой строке.
 
 public class Task10 {
