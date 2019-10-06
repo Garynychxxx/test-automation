@@ -1,6 +1,6 @@
 package com.epam.automation.inputoutput.maintask;
 
-import java.awt.image.AreaAveragingScaleFilter;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,11 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+//./src/main/java/com/epam/automation/inputoutput/maintask/resources/maintaskExampl.txt
 //[^ |].+(\.[A_Za-z0-9_!~=+-]+)$   (для файла)
 //[^ |].*\.(?![A_Za-z0-9_!~=+-]+)$ (для папки)
 
@@ -66,15 +69,16 @@ public class Task {
     ArrayList readTxtFileAndCreateStructure(File file) {
         ArrayList<Directory> directories = new ArrayList<>();
         try (Scanner scanner = new Scanner(file)) {
-            int i = 0;
+            int i = -1;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (line.contains("-----")) {
                     directories.add(new Directory());
                     ++i;
                 }
-                if (line.contains("\\.[a-zA-Z0-9]+$")) {
-                    directories.get(i).addFile(Pattern.compile("[^ |].+(\\.[A_Za-z0-9_!~=+-]+)$").matcher(line).toString());
+                if (line.contains("       ")) {
+                    directories.get(i).addFile(cutFilesName(line));
+
                 }
             }
         } catch (Exception ex) {
@@ -82,19 +86,35 @@ public class Task {
         }
         return directories;
     }
-    void calculateAndPrintResultOfTxtFile (ArrayList<Directory> directories){
+
+    String cutFilesName(String line) {
+
+        Pattern pattern = Pattern.compile("([^ |].+)\\.[A_Za-z0-9_!~=+-]+$");
+        Matcher matcher = pattern.matcher(line);
+        if (matcher.find()) {
+            line = matcher.group(1);
+        }
+        return line;
+    }
+
+    void calculateAndPrintResultOfTxtFile(ArrayList<Directory> directories) {
         int sumLengthOfFiles = 0;
         int countOfDirectories = 0;
-        int countOffiles = 0;
+        int countOfFiles = 0;
         for (Directory directory : directories) {
+
             countOfDirectories++;
             for (String file : directory.files) {
-                    countOffiles++;
-                    sumLengthOfFiles =+file.length();
+                countOfFiles++;
+                sumLengthOfFiles += file.length();
 
             }
         }
-        System.out.println("");
+        System.out.println("Количество папок: " + countOfDirectories + "\n" +
+                "Количество файлов: " + countOfFiles + "\n" +
+                "Среднее количество файлов в папке: " + countOfFiles / countOfDirectories + "\n" +
+                "Среднюю длинну названия файла: " + sumLengthOfFiles / countOfFiles + "\n"
+        );
     }
 }
 
